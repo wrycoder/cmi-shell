@@ -1,3 +1,7 @@
+This file is a simple log of experiments I have done with the SoX trimming
+utility. Once we have smoothed out the process, we need to update our scripts
+to do it automatically.
+
 SAMPLE 1: Bach Cello Suite
 TOTAL DURATION BEFORE: 18:17.06
 
