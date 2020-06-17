@@ -1,0 +1,25 @@
+SAMPLE 1: Bach Cello Suite
+TOTAL DURATION BEFORE: 18:17.06
+
+COMMAND: sox sox-test_mixdown.wav trimmed_mixdown.wav silence -l 1 0.1 1% -1 2.0 1%
+TOTAL DURATION AFTER: 17:53.52
+
+COMMAND: sox sox-test_mixdown.wav trimmed_mixdown.wav silence -l 1 0.1 1% -1 4.0 1%
+TOTAL DURATION AFTER: 18:06.873
+
+Garbage at the end
+
+--------
+
+SAMPLE 2: Irene Auger sampler
+TOTAL DURATION BEFORE: 7:54.65
+
+
+COMMAND: sox auger-sampler_mixdown.wav trimmed_mixdown.wav silence -l 1 0.1 1% -1 4.0 1%
+TOTAL DURATION AFTER: 5:02.03
+
+Still had garbage at end
+
+-------
+
+VERY GOOD RESULTS WITH THIS: sox vivaldi-sample_mixdown.wav trimmed-vivaldi-mixdown.wav silence -l 1 4.0 -96d -1 4.0 -6d
