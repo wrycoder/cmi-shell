@@ -5,7 +5,7 @@
 # the round function:
 round()
 {
-echo $(printf %.$2f $(echo "scale=$2;(((10^$2)*$1)+0.5)/(10^$2)" | bc))
+echo $(printf %.$2f $(echo "scale=$2;(((10^$2)*$1)+0.$3)/(10^$2)" | bc))
 };
 
 pad()
@@ -27,4 +27,4 @@ SOXI=~/sox-14.4.2/soxi
 minutes=$($SOXI -D ~/radio/voicetracks-2/$1*.wav |awk 'BEGIN { s = 0 }; { s = s + $1 }; END { print s / 60 }')
 seconds=$($SOXI -D ~/radio/voicetracks-2/$1*.wav |awk 'BEGIN { s = 0 }; { s = s + $1 }; END { print s % 60 }')
 
-echo "$(round $minutes 0):$(pad $(round $seconds 0))"
+echo "$(round $minutes 0 1):$(pad $(round $seconds 0 5))"
