@@ -17,7 +17,11 @@ if [ "$1" -lt "10" ]; then
     printf 0%s "$1"
   fi
 else
-  printf %s "$1"
+  if [ "$1" -eq "60" ]; then
+    printf %s "00"
+  else
+    printf %s "$1"
+  fi
 fi
 };
 
