@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export AWKFILE="$HOME/radio/bin/c2-to-cmi.awk"
+
 if [ "$#" != "1" ]; then
 cat <<EndOfHelp
   ERROR: incorrect number of arguments
@@ -16,7 +18,7 @@ else
   export NEWFILE="$1-web.csv"
   touch $NEWFILE
   cat > $NEWFILE <<END
-  `awk -F '\t' -f c2-to-cmi.awk $1.csv`
+  `awk -F '\t' -f $AWKFILE $1.csv`
 END
   echo 'done'
 fi
