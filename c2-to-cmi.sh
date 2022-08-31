@@ -15,6 +15,10 @@ cat <<EndOfHelp
 EndOfHelp
   exit
 else
+  if [[ ! -f "$1.csv" ]]; then
+    echo "ERROR: input file not found" >&2
+    exit 1
+  fi
   export NEWFILE="$1-web.csv"
   touch $NEWFILE
   cat > $NEWFILE <<END
