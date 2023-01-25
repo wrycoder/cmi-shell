@@ -7,6 +7,10 @@ str_time()
   minutes=`echo "$1 / 60" |bc`
   sval=`echo "$seconds - ($minutes * 60)" |bc`
   seconds=`echo $sval |sed -n 's/\([0-9]*\)[.][0-9]*/\1/p'`
+  if [[ $seconds -eq "" ]]
+  then
+    seconds="0"
+  fi
   decimal=`echo $sval |sed -n 's/[0-9]*[.]\([0-9]*\)/\1/p'`
   printf "%02d:%02d.%s\n" $minutes $seconds $decimal
 };
