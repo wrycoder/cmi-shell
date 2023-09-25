@@ -58,21 +58,21 @@ int main(int argc, char **argv)
   } 
     else 
   {
-    char *billboard_cmd = "copy CMI-%s%s-1.mp2 \"%s.%s %s BILLBOARD.mp2\"";
-    char *newshole_cmd = "copy CMI-%s%s-2.mp2 \"%s.%s %s NEWS HOLE.mp2\"";
-    char *segment_cmd = "copy CMI-%s%s-%d.mp2 \"%s.%s %s %s.mp2\"";
+    char *billboard_cmd = "copy CMI-%s%s-1.mp2 \"Ep. %s.%s %s %s BILLBOARD.mp2\"";
+    char *newshole_cmd = "copy CMI-%s%s-2.mp2 \"Ep. %s.%s %s %s NEWS HOLE.mp2\"";
+    char *segment_cmd = "copy CMI-%s%s-%d.mp2 \"Ep. %s.%s %s %s %s.mp2\"";
     char *cmdbuf;
     size_t buffer_size;
     for(int i = 0; i < 24; i++) 
     {
       buffer_size = strlen(billboard_cmd) + strlen("DAY") + strlen(letters[i]) + strlen(hours[i]) + strlen(airtimes[i]) + sizeof(char);
       cmdbuf = (char *)CoTaskMemAlloc(buffer_size);
-      StringCbPrintfA(cmdbuf, buffer_size, billboard_cmd, hours[i], argv[2], argv[1], letters[i], airtimes[i]);
+      StringCbPrintfA(cmdbuf, buffer_size, billboard_cmd, hours[i], argv[2], argv[1], letters[i], argv[2], airtimes[i]);
       printf(cmdbuf);
       system(cmdbuf);
       CoTaskMemFree(cmdbuf);
       buffer_size = strlen(newshole_cmd) + strlen("DAY") + strlen(letters[i]) + strlen(hours[i]) + strlen(airtimes[i]) + sizeof(char);
-      StringCbPrintfA(cmdbuf, buffer_size, newshole_cmd, hours[i], argv[2], argv[1], letters[i], airtimes[i]);
+      StringCbPrintfA(cmdbuf, buffer_size, newshole_cmd, hours[i], argv[2], argv[1], letters[i], argv[2], airtimes[i]);
       printf(cmdbuf);
       system(cmdbuf);
       CoTaskMemFree(cmdbuf);
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
         {
           buffer_size = strlen(segment_cmd) + strlen("DAY") + strlen(letters[i]) + strlen(hours[i]) + strlen(airtimes[i]) + strlen(segments[x]) + sizeof(char);
           cmdbuf = (char *)CoTaskMemAlloc(buffer_size);
-          StringCbPrintfA(cmdbuf, buffer_size, segment_cmd, hours[i], argv[2], (x+3), argv[1], letters[i], airtimes[i], segments[x]);
+          StringCbPrintfA(cmdbuf, buffer_size, segment_cmd, hours[i], argv[2], (x+3), argv[1], letters[i], argv[2], airtimes[i], segments[x]);
           printf(cmdbuf);
           system(cmdbuf);
           CoTaskMemFree(cmdbuf);
