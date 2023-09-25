@@ -58,13 +58,13 @@ EndOfHelp
   exit
 else
   for i in ${!letters[@]}; do
-    cmd="cp CMI-${hours[i]}$2-1.mp2 Ep.\ $1.${letters[i]}\ ${airtimes[i]}\ BILLBOARD.mp2"
+    cmd="cp CMI-${hours[i]}$2-1.mp2 Ep.\ $1.${letters[i]}\ $2\ ${airtimes[i]}\ BILLBOARD.mp2"
     eval $cmd 2>/dev/null
-    cmd="cp CMI-${hours[i]}$2-2.mp2 Ep.\ $1.${letters[i]}\ ${airtimes[i]}\ NEWS\ HOLE.mp2"
+    cmd="cp CMI-${hours[i]}$2-2.mp2 Ep.\ $1.${letters[i]}\ $2\ ${airtimes[i]}\ NEWS\ HOLE.mp2"
     eval $cmd 2>/dev/null
     for x in ${!segments[@]}; do
       let "filenumber = $x + 3"
-      cmd="cp CMI-${hours[i]}$2-$filenumber.mp2 Ep.\ $1.${letters[i]}\ ${airtimes[i]}\ ${segments[x]}.mp2"
+      cmd="cp CMI-${hours[i]}$2-$filenumber.mp2 Ep.\ $1.${letters[i]}\ $2\ ${airtimes[i]}\ ${segments[x]}.mp2"
       eval $cmd 2>/dev/null
     done
   done
