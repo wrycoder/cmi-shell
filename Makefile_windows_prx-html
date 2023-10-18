@@ -1,0 +1,11 @@
+CC := /usr/bin/i686-w64-mingw32-gcc
+
+CFLAGS := -I /home/ubuntu/x86_64/include -fopenmp -static
+
+LDFLAGS := -L /home/ubuntu/x86_64/lib -lwinmm -fopenmp -static -lole32
+
+prx-html.exe: prx-html.c
+	$(CC) $(CFLAGS) prx-html.c $(LDFLAGS) -o prx-html.exe
+
+clean:
+	rm prx-rename.exe
