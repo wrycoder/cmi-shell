@@ -33,12 +33,14 @@ int main(int argc, char **argv)
     switch(base_filename) {
       case 'A': /* N1 */
         link_label = "12:00 am";
+        break;
       case 'L':
         link_label = "11:00 am";
         break;
       case 'B': /* N2 */
         link_label = "1:00 am";
         program_id += 1;
+        break;
       case 'M':
         link_label = "12:00 pm";
         program_id += 1;
@@ -46,6 +48,7 @@ int main(int argc, char **argv)
       case 'C': /* L1 */
         link_label = "2:00 am";
         program_id += 2;
+        break;
       case 'V':
         link_label = "9:00 pm";
         program_id += 2;
@@ -53,6 +56,7 @@ int main(int argc, char **argv)
       case 'D': /* N3 */
         link_label = "3:00 am";
         program_id += 3;
+        break;
       case 'O':
         link_label = "2:00 pm";
         program_id += 3;
@@ -60,6 +64,7 @@ int main(int argc, char **argv)
       case 'E': /* N4 */
         link_label = "4:00 am";
         program_id += 4;
+        break;
       case 'P':
         link_label = "3:00 pm";
         program_id += 4;
@@ -67,6 +72,7 @@ int main(int argc, char **argv)
       case 'F': /* L2 */
         link_label = "5:00 am";
         program_id += 5;
+        break;
       case 'T':
         link_label = "7:00 pm";
         program_id += 5;
@@ -82,9 +88,11 @@ int main(int argc, char **argv)
       case 'U':
         link_label = "8:00 pm";
         program_id += 7;
+        break;
       case 'I': /* A3 */
         link_label = "8:00 am";
         program_id += 8;
+        break;
       case 'W':
         link_label = "10:00 pm";
         program_id += 8;
@@ -100,6 +108,7 @@ int main(int argc, char **argv)
       case 'N': /* P3 */
         link_label = "1:00 pm";
         program_id += 11;
+        break;
       case 'S':
         link_label = "6:00 pm";
         program_id += 11;
@@ -107,6 +116,7 @@ int main(int argc, char **argv)
       case 'Q': /* P1 */
         link_label = "4:00 pm";
         program_id += 12;
+        break;
       case 'X':
         link_label = "11:00 pm";
         program_id += 12;
