@@ -24,7 +24,7 @@ int main(int argc, char **argv)
   strncpy(day, datestring, 2);
   day[2] = '\0';
   FILE *fp;
-  char *link_label;
+  const char *link_label;
   char base_filename = 'A';
   char *filename;
 
@@ -126,7 +126,7 @@ int main(int argc, char **argv)
         program_id += 13;
         break;
     }
-    filename = malloc(7);
+    filename = (char*)malloc(7);
     sprintf(filename, "%c.html", base_filename);
     filename[6] = '\0';
     fp = fopen(filename, "w");
