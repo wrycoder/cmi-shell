@@ -138,4 +138,5 @@ int main(int argc, char **argv)
     program_id = atol(argv[2]);
     base_filename++;
   }
+  return 0;
 }
