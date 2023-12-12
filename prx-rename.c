@@ -24,7 +24,7 @@ bool file_exists(const char *filename)
 const char *letters[] =
 {
   "A",          "B",          "C",         "D",         "E",          "F",
-  "G",          "H",          "I",         "J",         "K",          "K",
+  "G",          "H",          "I",         "J",         "K",          "L",
   "M",          "N",          "O",         "P",         "Q",          "R",
   "S",          "T",          "U",         "V",         "W",          "X"
 };
