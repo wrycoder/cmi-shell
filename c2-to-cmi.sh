@@ -1,28 +1,30 @@
 #!/bin/sh
 
 export AWKFILE="$HOME/radio/bin/c2-to-cmi.awk"
+export TARGETDIR="$HOME/radio/website"
 
 if [ "$#" != "1" ]; then
 cat <<EndOfHelp
-  ERROR: incorrect number of arguments
+  ERROR: Filename is missing.
 
-  To use this command, you must specify the name
-  of the input file without the extension.
+  To use this command, you must specify the full
+  path of the input file, including the '.csv' extension.
 
-  If that file is found, this process will create
-  a file whose name begins with the name you supplied,
-  and ends in "-web.csv" (including the extension).
+  This process will create a file in $TARGETDIR,
+  with the same basename as the input file, plus
+  "-web.csv".
 EndOfHelp
   exit
 else
-  if [[ ! -f "$1.csv" ]]; then
+  if [[ ! -f "$1" ]]; then
     echo "ERROR: input file not found" >&2
     exit 1
   fi
-  export NEWFILE="$1-web.csv"
-  touch $NEWFILE
-  cat > $NEWFILE <<END
-  `awk -F '\t' -f $AWKFILE $1.csv`
+  export SOURCEFILE=`basename $1`
+  export NEWFILE=`printf $SOURCEFILE |sed 's/\(\.csv\)$/-web\1/'`
+  touch "${TARGETDIR}/${NEWFILE}"
+  cat > "${TARGETDIR}/${NEWFILE}" <<END
+  `awk -F '\t' -f $AWKFILE $1`
 END
   echo 'done'
 fi
