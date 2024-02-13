@@ -5,7 +5,7 @@ on open the_playlists
 	repeat with a_list in the_playlists
 		set full_name to name of (info for a_list)
 		set base_name to do shell script "echo " & (full_name) & "| sed 's/\\.[^.]*$//'"
-		set the_result to do shell script ("~/radio/bin/c2-to-cmi.sh " & (csv_folder) & base_name)
+		set the_result to do shell script ("~/radio/bin/c2-to-cmi " & (csv_folder) & base_name)
 	end repeat
 	display dialog "Done"
 end open
