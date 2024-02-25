@@ -12,6 +12,12 @@ on split(theString)
 	return theArray
 end split
 
+on select_hour()
+	set hours to {"N1", "N2", "L1", "N3", "N4", "L2", "A1", "A2", "A3", "L3", "L4", "P3", "P1", "P2"}
+	choose from list hours as list with prompt "Please choose the hour"
+	return result
+end select_hour
+
 on write_text_to_file(the_text, the_file, overwrite_existing)
 	try
 		set the_file to the_file as string
