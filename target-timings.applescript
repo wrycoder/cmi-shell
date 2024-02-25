@@ -32,7 +32,7 @@ end write_text_to_file
 -- Extract hourly timings from daily preview page
 on open the_file
 	set voicetrack_folder to "Macintosh HD:Users:toulipp:radio:voicetracks-2" as alias
-	set shell_script_folder to "~/radio/development/cmi-shell/"
+	set shell_script_folder to "~/radio/bin/"
 	set full_name to POSIX path of the_file
 	set raw_seconds to do shell script (shell_script_folder & "raw_seconds.sh " & full_name)
 	set output_folder to choose folder with prompt "Choose the day" default location voicetrack_folder
@@ -67,7 +67,7 @@ end get_timings
 
 on run
 	set voicetrack_folder to "Macintosh HD:Users:toulipp:radio:voicetracks-2" as alias
-	set shell_script_folder to "~/radio/development/cmi-shell/"
+	set shell_script_folder to "~/radio/bin/"
 	set input_folder to choose folder with prompt "Choose the day" default location voicetrack_folder
 	set filled_time to get_timings(input_folder)
 	display dialog "Pre-recorded time: " & filled_time
