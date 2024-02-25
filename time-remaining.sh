@@ -19,7 +19,7 @@ SOX=~/sox-14.4.2/sox
 # Maximum time in an hour is 56 minutes
 MAX_DURATION=`echo "60 * 56" |bc`
 
-filled=`$SOX $1*.wav -n stat 2>&1 | sed -n 's#^Length (seconds):[^0-9]*\([0-9.]*\)$#\1#p'`
+filled=`$SOX $1*$2*.wav -n stat 2>&1 | sed -n 's#^Length (seconds):[^0-9]*\([0-9.]*\)$#\1#p'`
 
-unfilled=`echo "$MAX_DURATION - ($2 + $filled)" |bc`
+unfilled=`echo "$MAX_DURATION - ($3 + $filled)" |bc`
 str_time $unfilled
