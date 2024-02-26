@@ -41,7 +41,7 @@ on open the_file
 	set shell_script_folder to "~/radio/bin/"
 	set full_name to quoted form of POSIX path of the_file
 	set raw_seconds to do shell script (shell_script_folder & "raw_seconds.sh " & full_name)
-	display dialog "raw seconds: " & raw_seconds
+	-- display dialog "raw seconds: " & raw_seconds
 	set output_folder to choose folder with prompt "Choose the day" default location voicetrack_folder
 	set timing_file_name to POSIX path of output_folder & ".timings"
 	set timings_written to write_text_to_file(raw_seconds, timing_file_name, true)
@@ -55,7 +55,7 @@ on get_timings(input_folder, selected_hour)
 		set fp to open for access (POSIX path of input_folder) & ".timings"
 		set raw_seconds to read fp until eof
 		close access fp
-		display dialog "raw seconds: " & raw_seconds as string
+		-- display dialog "raw seconds: " & raw_seconds as string
 		set split_timings to split(raw_seconds)
 		-- display dialog "Hours: " & hours as string
 		-- display dialog "raw seconds: " & raw_seconds as string
@@ -80,9 +80,10 @@ on run
 	set shell_script_folder to "~/radio/bin/"
 	set input_folder to choose folder with prompt "Choose the day" default location voicetrack_folder
 	set selected_hour to select_hour()
-	display dialog "Your hour: " & selected_hour
+	-- display dialog "Your hour: " & selected_hour
 	set filled_time to get_timings(input_folder, selected_hour)
-	display dialog "Pre-recorded time: " & filled_time
+	-- display dialog "Pre-recorded time: " & filled_time
+	-- display dialog "Path to input folder: " & POSIX path of input_folder
 	set unfilled_time to do shell script (shell_script_folder & "time-remaining.sh " & (POSIX path of input_folder) & " " & selected_hour & " " & filled_time)
-	display dialog "Unfilled time: " & unfilled_time
+	display dialog "Unfilled time: " & unfilled_time & " seconds"
 end run
