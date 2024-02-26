@@ -70,6 +70,7 @@ on get_timings(input_folder, selected_hour)
 		display dialog "Error reading timings: " & err_description
 		try
 			close access fp
+			return false
 		end try
 	end try
 end get_timings
@@ -82,8 +83,10 @@ on run
 	set selected_hour to select_hour()
 	-- display dialog "Your hour: " & selected_hour
 	set filled_time to get_timings(input_folder, selected_hour)
-	-- display dialog "Pre-recorded time: " & filled_time
-	-- display dialog "Path to input folder: " & POSIX path of input_folder
-	set unfilled_time to do shell script (shell_script_folder & "time-remaining.sh " & (POSIX path of input_folder) & " " & selected_hour & " " & filled_time)
-	display dialog "Unfilled time: " & unfilled_time & " seconds"
+	if filled_time is not equal to false then
+		set unfilled_time to do shell script (shell_script_folder & "time-remaining.sh " & (POSIX path of input_folder) & " " & selected_hour & " " & filled_time)
+		display dialog "Unfilled time: " & unfilled_time & " seconds"
+	else
+		display dialog "Duration of pre-recorded content unavailable. Have you downloaded the schedule?"
+	end if
 end run
