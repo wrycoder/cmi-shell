@@ -7,7 +7,7 @@ MAX_DURATION=`echo "60 * 56" |bc`
 
 `/bin/ls $1*$2*.wav >/dev/null 2>&1`
 if [ $? -eq 0 ]; then
-  filled=`$SOX $1*$2*.wav -n stat 2>&1 | sed -n 's#^Length (seconds):[^0-9]*\([0-9.]*\)$#\1#p'`
+  filled=`$SOX $1*$2-S*.wav -n stat 2>&1 | sed -n 's#^Length (seconds):[^0-9]*\([0-9.]*\)$#\1#p'`
 else
   filled=0
 fi
