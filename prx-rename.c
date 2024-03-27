@@ -16,7 +16,7 @@
 #include <dirent.h>
 #include <assert.h>
 
-bool file_exists(const char *filename) 
+bool file_exists(const char *filename)
 {
   struct stat buffer;
   return stat(filename, &buffer) == 0 ? true : false;
@@ -51,14 +51,14 @@ const char *segments[] = { "SEG 3", "SEG 4", "SEG 5", "SEG 6", "SEG 7" };
 
 int main(int argc, char **argv)
 {
-  if (argc != 3) 
+  if (argc != 3)
   {
     printf( "USAGE: %s [digit] [day]\n\n"\
             "* [digit] is the episode number for the day you want to publish\n"\
             "* [day] is a three-letter abbreviation for the day of the week\r\n", argv[0]);
     return 1;
-  } 
-    else 
+  }
+    else
   {
     char *billboard_cmd = "copy CMI-%s%s-1.mp2 \"Ep. %s.%s %s %s BILLBOARD.mp2\"";
     char *newshole_cmd = "copy CMI-%s%s-2.mp2 \"Ep. %s.%s %s %s NEWS HOLE.mp2\"";
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
     int success = true;
     int system_result;
     size_t buffer_size;
-    for(int i = 0; i < 24; i++) 
+    for(int i = 0; i < 24; i++)
     {
       buffer_size = strlen(billboard_cmd) + strlen("DAY") + strlen(letters[i]) + strlen(hours[i]) + strlen(airtimes[i]) + sizeof(char);
       cmdbuf = (char *)CoTaskMemAlloc(buffer_size);
@@ -131,7 +131,7 @@ int main(int argc, char **argv)
           printf(cmdbuf);
           system(cmdbuf);
           CoTaskMemFree(cmdbuf);
-        } 
+        }
       }
     }
     if (success == true)
