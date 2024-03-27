@@ -22,6 +22,7 @@ bool file_exists(const char *filename)
   return stat(filename, &buffer) == 0 ? true : false;
 }
 
+#define LONG_FORMAT_HOUR(X) X == 2 || X == 5 || X == 9 || X == 10 || X == 19 || X == 21
 const char *letters[] =
 {
   "A",          "B",          "C",         "D",         "E",          "F",
@@ -64,6 +65,7 @@ int main(int argc, char **argv)
     char *segment_cmd = "copy CMI-%s%s-%d.mp2 \"Ep. %s.%s %s %s %s.mp2\"";
     char *cmdbuf;
     HRESULT printf_result;
+    int success = true;
     int system_result;
     size_t buffer_size;
     for(int i = 0; i < 24; i++) 
@@ -73,35 +75,40 @@ int main(int argc, char **argv)
       if (cmdbuf == NULL)
       {
         printf("Error allocating memory for system command\r\n");
-        return 1;
+        success = false;
+        break;
       }
       printf_result = StringCbPrintfA(cmdbuf, buffer_size, billboard_cmd, hours[i], argv[2], argv[1], letters[i], argv[2], airtimes[i]);
       if (FAILED(printf_result))
       {
         DWORD error_code = GetLastError();
         printf("StringCbPrintfA failed with HRESULT 0x%x. GetLastError returned %d at line %d\r\n", printf_result, error_code, __LINE__);
-        return 1;
+        success = false;
+        break;
       }
       printf(cmdbuf);
       system_result = system(cmdbuf);
       if (system_result != 0)
       {
         printf("Error executing system call. Return code: %d\r\n", system_result);
-        return 1;
+        success = false;
+        break;
       }
       CoTaskMemFree(cmdbuf);
       buffer_size = strlen(newshole_cmd) + strlen("DAY") + strlen(letters[i]) + strlen(hours[i]) + strlen(airtimes[i]) + sizeof(char);
       if (cmdbuf == NULL)
       {
         printf("Error allocating memory for second system command\r\n");
-        return 1;
+        success = false;
+        break;
       }
       printf_result = StringCbPrintfA(cmdbuf, buffer_size, newshole_cmd, hours[i], argv[2], argv[1], letters[i], argv[2], airtimes[i]);
       if (FAILED(printf_result))
       {
         DWORD error_code = GetLastError();
         printf("StringCbPrintfA failed with HRESULT 0x%x. GetLastError returned %d at line %d\r\n", printf_result, error_code, __LINE__);
-        return 1;
+        success = false;
+        break;
       }
       printf(cmdbuf);
       system(cmdbuf);
@@ -113,7 +120,8 @@ int main(int argc, char **argv)
         {
           DWORD error_code = GetLastError();
           printf("StringCbPrintfA failed with HRESULT 0x%x. GetLastError returned %d at line %d\r\n", printf_result, error_code, __LINE__);
-          return 1;
+          success = false;
+          break;
         }
         if (file_exists(filename))
         {
@@ -123,13 +131,13 @@ int main(int argc, char **argv)
           printf(cmdbuf);
           system(cmdbuf);
           CoTaskMemFree(cmdbuf);
-        } else {
-          printf("Could not find this file: %s\r\n", filename);
-          return 1;
-        }
+        } 
       }
     }
-    printf("All files copied.\r\n");
+    if (success == true)
+    {
+      printf("All files copied.\r\n");
+    }
     return 0;
   }
 }
