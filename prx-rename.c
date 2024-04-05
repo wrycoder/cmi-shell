@@ -87,13 +87,8 @@ int main(int argc, char **argv)
         break;
       }
       printf(cmdbuf);
-      system_result = system(cmdbuf);
-      if (system_result != 0)
-      {
-        printf("Error executing system call. Return code: %d\r\n", system_result);
-        success = false;
-        break;
-      }
+      system(cmdbuf);
+      /* The file may not be found, but we really don't care */
       CoTaskMemFree(cmdbuf);
       buffer_size = strlen(newshole_cmd) + strlen("DAY") + strlen(letters[i]) + strlen(hours[i]) + strlen(airtimes[i]) + sizeof(char);
       if (cmdbuf == NULL)
