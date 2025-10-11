@@ -12,6 +12,13 @@
 # 8000-9999
 # 10000-11999
 
+# To CREATE the list of filenames from
+# a download of a Blurve preview page, use this
+# shell command:
+#
+#   sed -n '/ \{4\}C[0-9]\{4,5\}-/p' [filename] > [output csv file]
+#
+
 # Verify argument count
 if [[ $# -ne 1 ]]; then
   echo "Usage: $0 <input_csv_file>"
