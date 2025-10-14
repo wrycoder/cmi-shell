@@ -47,7 +47,6 @@ class FileCollector
         foreach (var line in File.ReadLines(csvPath))
         {
             string filename = line.Trim() + ".wav";
-            Console.WriteLine($"target file: {filename}");
             if (string.IsNullOrEmpty(filename)) continue;
 
             try
