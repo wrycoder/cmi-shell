@@ -12,11 +12,19 @@
 # 8000-9999
 # 10000-11999
 
-# To CREATE the list of filenames from
-# a download of a Blurve preview page, use this
-# shell command:
+# To CREATE the list of filenames from a download of a
+# complete Blurve preview page, use this shell command:
 #
 #   sed -n '/ \{4\}C[0-9]\{4,5\}-/p' [filename] > [output csv file]
+#
+# To extract a given program from a complete Blurve
+# preview, modify the command to excerpt a range of
+# lines:
+#
+#   sed -n '/CATEGORY\: [A-Z]/,/CATEGORY\:/p' [filename] | sed -n '/ \{4\}C[0-9]\{4,5\}-/p' > [output]
+#
+# ... where [A-Z] is the letter representing the program
+# you want to extract.
 #
 
 # Verify argument count
