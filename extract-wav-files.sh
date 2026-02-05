@@ -13,6 +13,10 @@ fi
 date=`sed -nE 's/.*([0-9]{4}-[0-9]{2}-[0-9]{2}).*/\1/p' $1 | head -1`
 
 output="$date.csv"
+if [ -f $output ]; then
+  rm $output
+fi
+
 touch $output
 
 for program in B C G H I J K; do
