@@ -19,7 +19,7 @@ fi
 
 touch $output
 
-for program in B C G H I J K; do
+for program in B C G H I J K Q R; do
   sed -n "/CATEGORY\: $program/,/CATEGORY\:/p" $1 | sed -nE '/ {4}C[0-9]{4,5}-/p' >> $output
 done
 
